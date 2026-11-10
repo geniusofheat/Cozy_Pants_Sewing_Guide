@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozy Pants — Single Color</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,800;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4ecd8; --panel:#fbf6e8; --ink:#14213d; --ink-soft:rgba(20,33,61,.62);
+  --crimson:#a4243b; --teal:#1f7a7a; --gold:#b8893a; --line:rgba(20,33,61,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.45;padding:18px 14px 50px;max-width:760px;margin:0 auto}
+
+.head{border:2px solid var(--ink);border-radius:6px;background:var(--panel);padding:20px 18px 16px;margin-bottom:16px;position:relative}
+.head::after{content:'';position:absolute;left:18px;right:18px;bottom:8px;height:2px;background:var(--gold)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson)}
+h1{font-family:'Fraunces',serif;font-weight:800;font-size:40px;line-height:1;margin:6px 0 4px}
+h1 em{color:var(--crimson);font-style:italic;font-weight:500}
+p {text-indent: 10px;}
+.sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);padding-bottom:12px}
+
+.panel{border:1.5px solid var(--ink);border-radius:6px;background:var(--panel);margin-bottom:14px;overflow:hidden}
+.ph{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1.5px solid var(--ink);background:rgba(20,33,61,.05)}
+.num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold)}
+.ph h2{font-family:'Fraunces',serif;font-weight:600;font-size:19px;line-height:1.15}
+.pb{padding:4px 14px 10px}
+.sec{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin:12px 0 2px;padding-bottom:3px;border-bottom:1.5px solid var(--teal)}
+
+.r{display:grid;grid-template-columns:34% 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.r:last-child{border-bottom:none}
+.r>span{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.r>b{font-weight:500}
+.r.key>b{font-weight:600}
+.m{font-family:'JetBrains Mono',monospace;font-size:12.5px}
+
+.f{border:1.5px solid var(--ink);border-left:5px solid var(--crimson);border-radius:4px;background:rgba(164,36,59,.05);padding:9px 12px;margin:9px 0;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7}
+.f .res{font-weight:600}
+
+.t{margin:8px 0}
+.tr{display:grid;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.tr.h{border-bottom:1.5px solid var(--ink);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.tr.tot{border-bottom:none;font-weight:600}
+.c3{grid-template-columns:1.3fr 1.5fr .6fr}
+.c2{grid-template-columns:.5fr 1.5fr}
+
+.note{border-left:4px solid var(--gold);background:rgba(184,137,58,.1);padding:7px 11px;margin:9px 0;font-size:13.5px;font-style:italic;border-radius:0 4px 4px 0}
+
+/* INSTRUCTIONS (bottom of each section) */
+.how{margin-top:12px;border-top:1.5px solid var(--ink);padding-top:2px}
+.how .ln{padding:5px 0;font-size:14px;line-height:1.45;border-bottom:1px dashed var(--line)}
+.how .ln:last-child{border-bottom:none}
+
+/* CONTENTS */
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 12px 8px}
+.toc .grp{grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);padding:8px 0 3px;margin-top:4px}
+.toc a{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:6px 8px;font-size:12.5px;line-height:1.2;background:var(--paper)}
+.toc a b{font-family:'JetBrains Mono',monospace;font-size:11px;min-width:20px}
+.toc a:active{border-color:var(--crimson)}
+.foot{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:20px}
+.foot i{color:var(--gold);font-style:normal}
+
+/* ALL SECTION TEXT BLACK */
+.panel, .panel *{color:#000 !important}
+.panel .num{color:var(--paper) !important}
+.panel{scroll-margin-top:10px}
+.ph .back{margin-left:auto;flex-shrink:0;text-decoration:none;border:1.5px solid #000;border-radius:4px;background:var(--paper);padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.ph .back:active{background:var(--gold)}
+@media(max-width:420px){.r{grid-template-columns:1fr;gap:1px}.toc{grid-template-columns:1fr}.c3{grid-template-columns:1.2fr 1.3fr .7fr}}
+
+/* ===== HIERARCHY: Section > Lesson > Part > Step > a,b,c ===== */
+.panel, .panel *{color:#000 !important}
+.panel .num{color:#fff !important}
+.mainT{display:flex;align-items:center;gap:14px;border-top:3px solid #000;border-bottom:3px solid #000;padding:14px 2px;margin:30px 0 14px;scroll-margin-top:10px}
+.mainT .mn{flex-shrink:0;width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+.mainT h2{font-family:'Fraunces',serif;font-weight:800;font-size:25px;line-height:1.1;color:#000}
+.mainT .back{margin-left:auto;flex-shrink:0;text-decoration:none;border:1.5px solid #000;border-radius:4px;background:var(--gold);padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#000}
+.ph .num{background:var(--ink);border:2px solid var(--gold);min-width:34px;width:34px;height:34px;border-radius:50%;padding:0;font-weight:700}
+.ph .ht{min-width:0}
+.ph .eb{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
+.ph h2{font-weight:800}
+.ph h2 .tot{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;white-space:nowrap}
+.partT{font-family:'Fraunces',serif;font-weight:800;font-size:17px;line-height:1.2;border-top:2px solid #000;border-bottom:2px solid #000;padding:7px 6px;margin:18px 0 8px;background:rgba(20,33,61,.06)}
+.desc{font-style:italic;padding:10px 0 8px;border-bottom:1.5px solid #000;margin-bottom:4px;font-size:14px}
+.stp{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1.5px solid #000;font-size:14px;line-height:1.5}
+.stp:last-child{border-bottom:none}
+.stp .sn{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff !important;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.stp .sb{min-width:0;flex:1}
+.stp .sub2{margin-top:6px}
+.stp .sub2 div{padding:3px 0 0 4px}
+.stp .sub2 b{font-family:'JetBrains Mono',monospace;margin-right:6px}
+.r,.tr{border-bottom:1.5px solid #000 !important}
+.r:last-child,.tr:last-child{border-bottom:none !important}
+.tr.h{border-bottom:2px solid #000 !important}
+.how{border-top:none;margin-top:6px}
+.fig{margin:8px 0 2px}.fig img{display:block;width:100%;max-width:380px;margin:0 auto;border:1.5px solid #000;border-radius:4px;height:auto}
+.top{display:grid;grid-template-columns:1fr 2fr;gap:12px;align-items:start;padding:10px 0 8px;border-bottom:1.5px solid #000;margin-bottom:4px}
+.topfig img{display:block;width:100%;height:auto;border-radius:4px}
+.desc2{font-style:italic;font-size:14px}
+.figph{border:1.5px dashed #000;border-radius:4px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px}
+.toc .grp.m{background:var(--ink);padding:6px 8px;border:none;border-radius:4px;margin-top:8px}
+.toc .grp.m a{border:none;background:none;padding:0;color:#fff!important;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;display:inline}
+.toc a b{min-width:20px}
+
+/* ===== v5 additions ===== */
+.ph .num{width:auto;min-width:40px;padding:0 9px;border-radius:17px;font-size:12.5px}
+.desc p+p,.desc2 p+p{margin-top:8px}
+.desc p,.desc2 p{margin:0}
+.desc b,.desc2 b{font-style:normal}
+.t .tr.c3{grid-template-columns:1.25fr 1.35fr .95fr}
+.tr .m{display:block}
+.ckw{display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer}
+.ckw .v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12.5px}
+.ck{flex-shrink:0;width:22px;height:22px;accent-color:#000;margin:0;cursor:pointer}
+.clk{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-top:4px;font-weight:700}
+.zoom{cursor:zoom-in;border:1.5px solid #000;border-radius:4px}
+#zoomov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:99;align-items:center;justify-content:center;padding:8px}
+#zoomov.on{display:flex}
+#zoomov img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;border-radius:4px}
+#zoomov .x{position:fixed;top:10px;right:12px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid #fff;border-radius:4px;padding:6px 10px}
+.rf{border-top:2px solid #000;margin:6px 0 10px;padding-top:6px}
+.rf .lab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.gbtn{display:block;width:100%;text-align:left;background:var(--ink);color:#fff;border:none;border-radius:6px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;cursor:pointer}
+.gbtn span{float:right}
+.gl{display:none;border:1.5px solid #000;border-radius:6px;background:var(--panel);margin-top:8px;padding:2px 12px}
+.gl.on{display:block}
+.gl a{display:block;padding:9px 0;border-bottom:1.5px solid #000;text-decoration:none;font-size:13.5px;font-weight:600;color:#000}
+.gl a:last-child{border-bottom:none}
+.gl a small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;margin-left:6px;font-weight:400}
+.stp1{border-top:1.5px solid #000}
+.hr{border-top:1.5px solid #000;margin:6px 0}
+.gt{scroll-margin-top:14px}
+.mono{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px}
+
+.abbr{border-bottom:1.5px dotted #000;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#abar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;padding:12px 16px 18px;z-index:90;transform:translateY(110%);transition:transform .18s;max-width:760px;margin:0 auto;border-radius:10px 10px 0 0}
+#abar.on{transform:translateY(0)}
+#abar .a1{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;letter-spacing:.06em}
+#abar .a2{font-family:'Fraunces',serif;font-weight:800;font-size:17px;margin-top:3px}
+#abar .a3{font-size:14px;line-height:1.45;margin-top:5px}
+#abar .abx{position:absolute;top:8px;right:12px;background:none;border:1.5px solid #fff;color:#fff;border-radius:4px;font-size:12px;padding:3px 9px;font-family:'JetBrains Mono',monospace}
+
+/* ===== v6: measurement inputs, results, glossary flash ===== */
+.inp{border:1.5px solid #000;border-radius:6px;background:#fff;padding:9px 12px;margin:8px 0}
+.inp label{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:600;font-size:14px}
+.mi{width:84px;font:700 16px 'JetBrains Mono',monospace;border:1.5px solid #000;border-radius:4px;padding:6px 8px;background:var(--panel);color:#000}
+.inp .sv{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
+.outl{border:1.5px solid #000;border-left:5px solid var(--crimson);border-radius:4px;background:rgba(164,36,59,.05);padding:8px 12px;margin:8px 0;font-size:14px}
+.outl b{font-size:15px}
+.flash{outline:3px solid var(--gold);background:rgba(184,137,58,.3);transition:background .4s}
+[id^="g_"]{scroll-margin-top:90px}
+.toc .grp.m,.toc .grp.m *{color:#fff !important}
+
+/* ===== v7 ===== */
+.panel>.ph.sec{padding:0;gap:0;background:var(--ink);border-bottom:none;align-items:stretch}
+.ph .nc{flex-shrink:0;background:var(--paper);display:flex;align-items:center;justify-content:center;padding:10px 12px;border-right:2px solid var(--ink)}
+.ph .nc .num{background:var(--ink);border:3px solid #fff;outline:2px solid var(--ink);color:#fff !important}
+.ph .tc{flex:1;min-width:0;background:var(--ink);padding:11px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.panel .ph .tc,.panel .ph .tc *{color:#fff !important}
+.ph .tc h2{font-size:19px;font-weight:800}
+.ssec{border-top:2px solid var(--ink)}
+.ssec .ph{padding:0;gap:0;background:var(--ink);border-bottom:none;align-items:stretch}
+.ssec .ph .tc h2{font-size:16px}
+.sbody{padding:4px 14px 12px}
+.step{padding:9px 0;border-top:1.5px solid #000;font-size:14px;line-height:1.5}
+.step:first-of-type{margin-top:6px}
+.step>b:first-child{font-family:'JetBrains Mono',monospace;font-weight:700;margin-right:4px}
+.sbody>.t+.step,.sbody>.inp+.step{margin-top:6px}
+.panel>.pb>.top{padding:12px 14px 10px}
+.pb{padding:0}
+.sec{margin-top:10px}
+
+/* ===== v8 ===== */
+.lg{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(var(--r),auto);gap:6px}
+.item .ph .nc{padding:8px 10px}
+.item .ph .tc h2{font-size:15px}
+.item .ph .num{min-width:34px;height:34px;font-size:13px}
+.lesson-top{padding:12px 14px 6px}
+
+/* ===== v9 ===== */
+.top>.desc2:only-child{grid-column:1/-1}
+.srow{display:grid;grid-template-columns:1fr 2fr;gap:12px;align-items:start;border-top:1.5px solid var(--ink);padding-top:9px}
+.srow .step{border-top:0;padding-top:0}
+.srow .topfig img{display:block;width:100%;height:auto;border-radius:4px}
+.step .inp{margin:8px 0 2px}
+#abar .a4{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;margin-top:8px;padding-top:7px;border-top:1.5px solid #fff}
+#abar .a4:empty{display:none}
+</style>
+</head>
+<body>
+<div class="head">
+  <div class="eyebrow">Single Color Edition</div>
+  <h1>Cozy <em>Pants</em></h1>
+  <div class="sub">6 sections · in order, start to finish</div>
+</div>
+<div class="rf"><div class="lab">Read First</div><button class="gbtn" id="gbtn" type="button">Glossary <span>+</span></button><div class="gl" id="gl"><a href="#g_SA" data-g="1">Seam Allowance (SA)</a><a href="#g_WSIZE" data-g="1">Waist Size (WS)</a><a href="#g_SAW" data-g="1">Seam Allowance Width (SAW)</a><a href="#g_TSA" data-g="1">Total Seam Allowance (TSA)</a><a href="#g_ESC" data-g="1">Elastic Stretch Comfort</a><a href="#g_TPW" data-g="1">Total Pattern Width (TPW)</a><a href="#g_PML" data-g="1">Pants Measured Length (PML)</a><a href="#g_WSA" data-g="1">Waistband Seam Allowance (WSA)</a><a href="#g_TPL" data-g="1">Total Pattern Length (TPL)</a><a href="#g_WSPP" data-g="1">Waist Size Per Piece (WSPP)</a><a href="#g_IWPW" data-g="1">Individual Waistband Pattern Width (IWPW)</a><a href="#g_TCW" data-g="1">Total Crotch Width (TCW)</a><a href="#g_TAW" data-g="1">Total Ankle Width (TAW)</a><a href="#g_RS" data-g="1">Right side</a><a href="#g_WRONG" data-g="1">Wrong side</a><a href="#g_TPM" data-g="1">Top Pocket Mark (TPM)</a><a href="#g_BPM" data-g="1">Bottom Pocket Mark (BPM)</a><a href="#g_FCL" data-g="1">Finished Crotch Length (FCL)</a><a href="#g_TCL" data-g="1">Total Crotch Length (TCL)</a><a href="#g_BCM" data-g="1">Bottom Crotch Mark (BCM)</a><a href="#g_TCM" data-g="1">Top Crotch Mark (TCM)</a><a href="#g_CR" data-g="1">Crotch Rise (CR)</a><a href="#g_CRF" data-g="1">Crotch Rise Front (CRF)</a><a href="#g_CRR" data-g="1">Crotch Rise Rear (CRR)</a><a href="#g_LBL" data-g="1">LF · RF · LR · RR</a><a href="#g_INS" data-g="1">Inseam</a></div></div>
+<div class="panel" id="contents">
+  <div class="ph"><div class="num">◆</div><div class="ht"><h2>Contents</h2></div></div>
+<div class="toc">
+<div class="grp m"><a href="#m1">1 &nbsp; Taking Measurements</a></div>
+<div class="lg" style="--r:1">
+<a href="#l1_1"><b>1.1</b>Total Pattern Width (TPW)</a>
+<a href="#l1_2"><b>1.2</b>Total Pattern Length (TPL)</a>
+</div>
+<div class="grp m"><a href="#m2">2 &nbsp; Buying the Fabric</a></div>
+<div class="lg" style="--r:2">
+<a href="#l2_1"><b>2.1</b>Check the Cord Width</a>
+<a href="#l2_2"><b>2.2</b>Square Inches and Estimated Yards</a>
+<a href="#l2_3"><b>2.3</b>Yards to Buy</a>
+</div>
+<div class="grp m"><a href="#m3">3 &nbsp; Measuring and Marking the Pattern</a></div>
+<div class="lg" style="--r:2">
+<a href="#l3_1"><b>3.1</b>Individual Pattern Piece Width (IPPW)</a>
+<a href="#l3_2"><b>3.2</b>Preparing and Marking the Width</a>
+<a href="#l3_3"><b>3.3</b>Marking the Length</a>
+</div>
+<div class="grp m"><a href="#m4">4 &nbsp; Drawing the Pattern</a></div>
+<div class="lg" style="--r:1">
+<a href="#l4_1"><b>4.1</b>Drawing the Crotch Rise</a>
+<a href="#l4_2"><b>4.2</b>Drawing the Inseam</a>
+</div>
+<div class="grp m"><a href="#m5">5 &nbsp; Cutting</a></div>
+<div class="lg" style="--r:2">
+<a href="#l5_1"><b>5.1</b>Cut the Crotch Edge</a>
+<a href="#l5_2"><b>5.2</b>Cut the Folded Edge</a>
+<a href="#l5_3"><b>5.3</b>Cut the Edges and Bottom</a>
+</div>
+<div class="grp m"><a href="#m6">6 &nbsp; Sewing the Pants</a></div>
+<div class="lg" style="--r:5">
+<a href="#l6_1"><b>6.1</b>Sew the Top Waist Seam</a>
+<a href="#l6_2"><b>6.2</b>Set the Waistband Eyelets</a>
+<a href="#l6_3"><b>6.3</b>Sew the Waistband</a>
+<a href="#l6_4"><b>6.4</b>Sew the Ankle Seams</a>
+<a href="#l6_5"><b>6.5</b>Sew the Rear Pieces Together</a>
+<a href="#l6_6"><b>6.6</b>Sew the Front Pieces Together</a>
+<a href="#l6_7"><b>6.7</b>Sew the Zipper</a>
+<a href="#l6_8"><b>6.8</b>Mark the Pocket Position</a>
+<a href="#l6_9"><b>6.9</b>Sew the Pockets</a>
+<a href="#l6_10"><b>6.10</b>Join Front & Rear</a>
+</div>
+</div>
+</div>
+<div class="panel" id="m1">
+<div class="ph sec"><div class="nc"><div class="num">1</div></div><div class="tc"><h2>Taking Measurements</h2></div></div>
+<div class="pb">
+<div class="top"><div class="desc2"><p>Take the two measurements that decide how much fabric you need: the total width in lesson 1.1 and the total length in lesson 1.2. Section 2 uses them to buy the fabric and section 3 uses them again to measure and mark it. Follow each step and write the numbers down.</p></div></div>
+<div class="ssec" id="l1_1">
+<div class="ph"><div class="nc"><div class="num">1.1</div></div><div class="tc"><h2>Total Pattern Width (TPW) <span class="tot"><span class="dv" data-e="TPW">52</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The total pattern width (TPW) is the waist size (WS) plus all of the seam allowances (SA) and the elastic stretch comfort, added across all 4 pieces. The <b class="gt" id="g_SA">seam allowance (SA)</b> is the extra material at a seam that is sewn or folded out of sight. Lesson 3.1 divides the TPW by 4 to find the width of one pattern piece.</p></div>
+<div class="ssec item" id="l1_1_i1">
+<div class="ph"><div class="nc"><div class="num">1</div></div><div class="tc"><h2>Measuring Waist Size (WS) <span class="tot"><span class="dv" data-e="WS">42</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img class="zoom" src="cp_waist_size.jpg" alt="How to measure the waist size (WS) with a tape"><div class="clk">click</div></div><div class="desc2"><p>Wrap a measuring tape around your waist where the pants will sit. Keep the tape level all the way around, snug but not tight. Write the number down with a W at the end.</p></div></div>
+<div class="step"><b>Step 1:</b> Enter the number into the box below.<div class="inp"><label>Your waist size (WS) <input type="number" inputmode="decimal" step="0.125" min="0" class="mi" data-k="WS" placeholder="42"> in W</label><div class="sv">Saved on this device</div></div></div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span><span id="g_WSIZE">Waist Size (WS)</span></span><span>Around the waist where the pants sit</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WS">42</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l1_1_i2">
+<div class="ph"><div class="nc"><div class="num">2</div></div><div class="tc"><h2>Total Seam Allowance (TSA) <span class="tot"><span class="dv" data-e="TSA">8</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Every side of every piece has a seam allowance. Add them all up across the width.</p></div>
+<div class="step"><b>Step 1:</b> Every side of every piece has a 1" seam allowance.</div>
+<div class="step"><b>Step 2:</b> Each piece has 2 sides across the width, and the pants have 4 pieces (LF, RF, LR, RR): 2 sides × 4 pieces × 1" = <span class="dv" data-e="TSA">8</span>" W. This is your TSA.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span><span id="g_SAW">Seam Allowance Width (SAW)</span></span><span>Width of the seam allowance on one side</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SAW">1</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Sides per piece</span><span>Left and right edge</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SIDES">2</span></b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Pieces</span><span>LF · RF · LR · RR</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="PIECES">4</span></b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_TSA">Total Seam Allowance (TSA)</span></span><span><span class="dv" data-e="SIDES">2</span> × <span class="dv" data-e="PIECES">4</span> × <span class="dv" data-e="SAW">1</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TSA">8</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l1_1_i3">
+<div class="ph"><div class="nc"><div class="num">3</div></div><div class="tc"><h2>Elastic Stretch Comfort <span class="tot"><span class="dv" data-e="COMF">2</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The comfort is the extra room that lets the waistband stretch over the hips. It is shared by the 4 pieces.</p></div>
+<div class="step"><b>Step 1:</b> Add <span class="dv" data-e="COMF">2</span>" of comfort so the waist can stretch over the hips and still be comfortable. Each of the 4 pieces gets <span class="dv" data-e="CPP">½</span>" W of it (see lesson 3.1).</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span><span id="g_ESC">Elastic Stretch Comfort</span></span><span>Extra room so the waistband stretches over the hips</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="COMF">2</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l1_1_i4">
+<div class="ph"><div class="nc"><div class="num">4</div></div><div class="tc"><h2>Adding the Width Measurements <span class="tot"><span class="dv" data-e="TPW">52</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Add items 1, 2 and 3 to find the total pattern width.</p></div>
+<div class="step"><b>Step 1:</b> Add the waist size, the TSA and the comfort: <span class="dv" data-e="WS">42</span> + <span class="dv" data-e="TSA">8</span> + <span class="dv" data-e="COMF">2</span> = <span class="dv" data-e="TPW">52</span>" W. This is your TPW. Lesson 3.1 divides it by 4 to find the width of one piece.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Waist Size (WS)</span><span>Item 1</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WS">42</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Total Seam Allowance (TSA)</span><span>Item 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TSA">8</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Elastic Stretch Comfort</span><span>Item 3</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="COMF">2</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_TPW">Total Pattern Width (TPW)</span></span><span><span class="dv" data-e="WS">42</span> + <span class="dv" data-e="TSA">8</span> + <span class="dv" data-e="COMF">2</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TPW">52</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ssec" id="l1_2">
+<div class="ph"><div class="nc"><div class="num">1.2</div></div><div class="tc"><h2>Total Pattern Length (TPL) <span class="tot"><span class="dv" data-e="TPL">42</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img class="zoom" src="cp_tpl.jpg" alt="Pattern piece with the lengths marked along the folded edge"><div class="clk">click</div></div><div class="desc2"><p>The total pattern length (TPL) is the finished pants length plus the seam allowances, from the top raw edge of the fabric to the bottom of the fabric at the ankle. Each item below measures one value and the last one adds them into the total. You need the TPL to calculate the yards to buy (section 2).</p></div></div>
+<div class="ssec item" id="l1_2_i1">
+<div class="ph"><div class="nc"><div class="num">1</div></div><div class="tc"><h2>Measuring Pants Length (PML) <span class="tot"><span class="dv" data-e="PML">38</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Measure the true length of your body from the top of the waistband to the bottom of the ankle, lying flat with the tape straight. This is the length the finished pants will be. Write the number down with an L at the end.</p></div>
+<div class="step"><b>Step 1:</b> Enter the number into the box below.<div class="inp"><label>Your pants measured length (PML) <input type="number" inputmode="decimal" step="0.125" min="0" class="mi" data-k="PML" placeholder="38"> in L</label><div class="sv">Saved on this device</div></div></div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span><span id="g_PML">Pants Measured Length (PML)</span></span><span>Top of the waistband to the bottom of the ankle</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="PML">38</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l1_2_i2">
+<div class="ph"><div class="nc"><div class="num">2</div></div><div class="tc"><h2>Waistband Seam Allowance (WSA) <span class="tot"><span class="dv" data-e="WSA">3</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The waistband needs extra material above the finished waistband. The finished 2" you see is already inside the pants length.</p></div>
+<div class="step"><b>Step 1:</b> The waistband folds down <span class="dv" data-e="WBF">2</span>" behind the front, wrong sides together.</div>
+<div class="step"><b>Step 2:</b> Add the <span class="dv" data-e="WBS">1</span>" sewn seam allowance: <span class="dv" data-e="WBF">2</span> + <span class="dv" data-e="WBS">1</span> = <span class="dv" data-e="WSA">3</span>" L. This is your WSA.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Folded seam allowance</span><span>Back layer folds down behind the front</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WBF">2</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Sewn seam allowance</span><span>Sewn edge, below the fold</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WBS">1</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_WSA">Waistband Seam Allowance (WSA)</span></span><span><span class="dv" data-e="WBF">2</span> + <span class="dv" data-e="WBS">1</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WSA">3</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l1_2_i3">
+<div class="ph"><div class="nc"><div class="num">3</div></div><div class="tc"><h2>Ankle Seam Allowance <span class="tot"><span class="dv" data-e="ANK">1</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The bottom of each leg folds under, so it needs its own seam allowance.</p></div>
+<div class="step"><b>Step 1:</b> The bottom of each leg folds under, wrong sides together, so it needs <span class="dv" data-e="ANK">1</span>" of ankle seam allowance.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span>Ankle seam allowance</span><span>Folds under, wrong sides together</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="ANK">1</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l1_2_i4">
+<div class="ph"><div class="nc"><div class="num">4</div></div><div class="tc"><h2>Adding the Length Measurements <span class="tot"><span class="dv" data-e="TPL">42</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Add items 1, 2 and 3 to find the total pattern length.</p></div>
+<div class="step"><b>Step 1:</b> Add the pants length, the waistband seam allowance and the ankle seam allowance: <span class="dv" data-e="PML">38</span> + <span class="dv" data-e="WSA">3</span> + <span class="dv" data-e="ANK">1</span> = <span class="dv" data-e="TPL">42</span>" L. This is your TPL.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Pants Measured Length (PML)</span><span>Item 1</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="PML">38</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Waistband Seam Allowance (WSA)</span><span>Item 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WSA">3</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Ankle seam allowance</span><span>Item 3</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="ANK">1</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_TPL">Total Pattern Length (TPL)</span></span><span><span class="dv" data-e="PML">38</span> + <span class="dv" data-e="WSA">3</span> + <span class="dv" data-e="ANK">1</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TPL">42</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel" id="m2">
+<div class="ph sec"><div class="nc"><div class="num">2</div></div><div class="tc"><h2>Buying the Fabric</h2></div></div>
+<div class="pb">
+<div class="top"><div class="desc2"><p>Fabric is sold by the yard (36") from a cord (one roll of fabric) that is at most 22" wide. Use the fabric width each side (lesson 3.1, item 2) and the total pattern length (TPL, lesson 1.2) to work out what to ask for.</p></div></div>
+<div class="ssec" id="l2_1">
+<div class="ph"><div class="nc"><div class="num">2.1</div></div><div class="tc"><h2>Check the Cord Width</h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The widest retail cord is 22" W, so the fabric width each side of the fold must fit inside it. If it does not, you need a specialty supplier with wider rolls.</p></div>
+<div class="step"><b>Step 1:</b> Check that your fabric width each side fits inside the 22" cord. If not, find a specialty supplier.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Cord width</span><span>Widest retail fabric</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CORD">22</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Fabric width each side</span><span>Lesson 3.1, item 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="FW">18½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Room to spare</span><span><span class="dv" data-e="CORD">22</span> − <span class="dv" data-e="FW">18½</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="ROOM">3½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+<div class="r key"><span>Fabric width 22" W or less</span><b>Buy at a normal retail store</b></div>
+<div class="r key"><span>Fabric width over 22" W</span><b>Seek a specialty fabric supplier with wider rolls</b></div>
+</div>
+</div>
+<div class="ssec" id="l2_2">
+<div class="ph"><div class="nc"><div class="num">2.2</div></div><div class="tc"><h2>Square Inches and Estimated Yards <span class="tot"><span class="dv" data-e="SQIN">924</span> sq in</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Square inches measure how much fabric the pattern needs. Compare them with the square inches in one yard of 22" wide cord to estimate how many yards to buy.</p></div>
+<div class="step"><b>Step 1:</b> Multiply the 22" cord width by the TPL to get the square inches the pattern needs: <span class="dv" data-e="CORD">22</span> × <span class="dv" data-e="TPL">42</span> = <span class="dv" data-e="SQIN">924</span> sq in.</div>
+<div class="step"><b>Step 2:</b> Multiply the 22" cord width by the 36" in one yard to get the square inches in one yard: <span class="dv" data-e="CORD">22</span> × <span class="dv" data-e="YD">36</span> = <span class="dv" data-e="SQYD">792</span> sq in.</div>
+<div class="step"><b>Step 3:</b> If the pattern needs more square inches than one yard holds (<span class="dv" data-e="SQIN">924</span> is more than <span class="dv" data-e="SQYD">792</span>), divide: <span class="dv" data-e="SQIN">924</span> ÷ <span class="dv" data-e="SQYD">792</span> = <span class="dv" data-e="YDS" data-d="1">1.17</span> yards. If it needs less, one yard is enough.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Cord width</span><span>Widest retail fabric</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CORD">22</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Total Pattern Length (TPL)</span><span>Lesson 1.2, item 4</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TPL">42</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Square inches needed</span><span><span class="dv" data-e="CORD">22</span> × <span class="dv" data-e="TPL">42</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SQIN">924</span> sq in</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Square inches in 1 yard</span><span><span class="dv" data-e="CORD">22</span> × <span class="dv" data-e="YD">36</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SQYD">792</span> sq in</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Estimated yards per piece</span><span><span class="dv" data-e="SQIN">924</span> ÷ <span class="dv" data-e="SQYD">792</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="YDS" data-d="1">1.17</span> yd</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec" id="l2_3">
+<div class="ph"><div class="nc"><div class="num">2.3</div></div><div class="tc"><h2>Yards to Buy <span class="tot"><span class="dv" data-e="TOTYD">4</span> yd</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Round the estimate up to whole yards for each of the two sections, the front and the rear, and buy them as one continuous piece.</p></div>
+<div class="step"><b>Step 1:</b> Round the estimate up to the next whole yard: <span class="dv" data-e="YDS" data-d="1">1.17</span> becomes <span class="dv" data-e="YDN">2</span> yards (<span class="dv" data-e="YDIN">72</span>") per piece.</div>
+<div class="step"><b>Step 2:</b> Buy <span class="dv" data-e="TOTYD">4</span> yards in one continuous piece: <span class="dv" data-e="YDN">2</span> yards for the front pieces and <span class="dv" data-e="YDN">2</span> yards for the rear pieces. Lesson 3.2 divides it into the two sections.</div>
+<div class="step"><b>Step 3:</b> Leftover: <span class="dv" data-e="YDIN">72</span> − <span class="dv" data-e="TPL">42</span> = <span class="dv" data-e="LEFT">30</span>", so a 22" × <span class="dv" data-e="LEFT">30</span>" piece is left for the pockets.</div>
+<div class="step"><b>Step 4:</b> Order a little longer and wider than measured so you can trim the frayed edges cleanly.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Estimated yards per piece</span><span>From lesson 2.2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="YDS" data-d="1">1.17</span> yd</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Rounded up</span><span>Whole yards per piece</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="YDN">2</span> yd</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Pieces</span><span>Front and rear</span><span class="m"><label class="ckw"><b class="v">2</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Yards to buy</span><span><span class="dv" data-e="YDN">2</span> × 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TOTYD">4</span> yd</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel" id="m3">
+<div class="ph sec"><div class="nc"><div class="num">3</div></div><div class="tc"><h2>Measuring and Marking the Pattern</h2></div></div>
+<div class="pb">
+<div class="top"><div class="desc2"><p>Each lesson prepares the fabric or marks a pattern value on it with a marker or white chalk, point to point: it tells you which edge to start on, whether to measure across or down, and where to make the mark. The marks are the points you connect in the drawing section. A body measurement already taken in section 1 is not measured again.</p></div></div>
+<div class="ssec" id="l3_1">
+<div class="ph"><div class="nc"><div class="num">3.1</div></div><div class="tc"><h2>Individual Pattern Piece Width (IPPW) <span class="tot"><span class="dv" data-e="IWPW">13</span>" · <span class="dv" data-e="TCW">16½</span>" · <span class="dv" data-e="TAW">12</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img class="zoom" src="cp_ippw.jpg" alt="Widths of one pattern piece measured from the folded edge"><div class="clk">click</div></div><div class="desc2"><p>The individual pattern piece width (IPPW) is the width of one pattern piece. A piece has its own width at the waist, the crotch and the ankle, and each is worked out in its own lesson below. The maximum cord width of most store bought fabric is 22" W, so the fabric width each side must be 22" or less to use retail fabric.</p></div></div>
+<div class="ssec item" id="l3_1_i1">
+<div class="ph"><div class="nc"><div class="num">1</div></div><div class="tc"><h2>Waistband Width (IWPW) <span class="tot"><span class="dv" data-e="IWPW">13</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>One pattern piece is a quarter of the pants, so the waist size, the comfort and the seam allowances are worked out for one piece.</p></div>
+<div class="step"><b>Step 1:</b> Divide the waist size from lesson 1.1 by the 4 pieces: <span class="dv" data-e="WS">42</span> ÷ <span class="dv" data-e="PIECES">4</span> = <span class="dv" data-e="WSPP">10½</span>" W. This is your waist size per piece (WSPP).</div>
+<div class="step"><b>Step 2:</b> Divide the <span class="dv" data-e="COMF">2</span>" of elastic stretch comfort by the 4 pieces: <span class="dv" data-e="COMF">2</span> ÷ <span class="dv" data-e="PIECES">4</span> = <span class="dv" data-e="CPP">½</span>" W.</div>
+<div class="step"><b>Step 3:</b> Add the <span class="dv" data-e="SAPP">2</span>" of seam allowance (1" on each of the 2 sides): <span class="dv" data-e="WSPP">10½</span> + <span class="dv" data-e="CPP">½</span> + <span class="dv" data-e="SAPP">2</span> = <span class="dv" data-e="IWPW">13</span>" W. This is your IWPW.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span><span id="g_WSPP">Waist Size Per Piece (WSPP)</span></span><span><span class="dv" data-e="WS">42</span> ÷ <span class="dv" data-e="PIECES">4</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WSPP">10½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Comfort per piece</span><span><span class="dv" data-e="COMF">2</span> ÷ <span class="dv" data-e="PIECES">4</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CPP">½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Seam allowance</span><span>1" on each of the 2 sides</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SAPP">2</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_IWPW">Individual Waistband Pattern Width (IWPW)</span></span><span><span class="dv" data-e="WSPP">10½</span> + <span class="dv" data-e="CPP">½</span> + <span class="dv" data-e="SAPP">2</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="IWPW">13</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_1_i2">
+<div class="ph"><div class="nc"><div class="num">2</div></div><div class="tc"><h2>Total Crotch Width (TCW) <span class="tot"><span class="dv" data-e="FW">18½</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The easy method is to use a store bought pattern and trace around the shape provided. For more accurate measurements, measure your body. This item shows you how to measure the crotch, apply a more comfortable elastic stretch and add the trim for the frayed edges.</p></div>
+<div class="srow"><div class="topfig"><img class="zoom" src="cp_horizontal_width.jpg" alt="Outer hip around the front to the inner crotch"><div class="clk">click</div></div><div class="step"><b>Step 1:</b> Place the tape on the outer edge of your hip and measure to the inner thigh at the crotch, halfway around the leg. Write the number down with a W at the end, then enter it in the box below.<div class="inp"><label>Your crotch width (CW) <input type="number" inputmode="decimal" step="0.125" min="0" class="mi" data-k="CW" placeholder="14"> in W</label><div class="sv">Saved on this device</div></div></div></div>
+<div class="step"><b>Step 2:</b> Add the <span class="dv" data-e="CPP">½</span>" of comfort for one piece and the <span class="dv" data-e="SAPP">2</span>" of seam allowance (1" on each of the 2 sides): <span class="dv" data-e="CW">14</span> + <span class="dv" data-e="CPP">½</span> + <span class="dv" data-e="SAPP">2</span> = <span class="dv" data-e="TCW">16½</span>" W. This is your TCW.</div>
+<div class="step"><b>Step 3:</b> Add <span class="dv" data-e="TRIM">2</span>" for the frayed edges (1" on each side), so the edges can be trimmed cleanly: <span class="dv" data-e="TCW">16½</span> + <span class="dv" data-e="TRIM">2</span> = <span class="dv" data-e="FW">18½</span>" W. This is the fabric width each side of the fold. It must be 22" W or less.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Crotch width</span><span>Outer hip to inner thigh, halfway around the leg</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CW">14</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Comfort per piece</span><span><span class="dv" data-e="COMF">2</span> ÷ <span class="dv" data-e="PIECES">4</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CPP">½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Seam allowance</span><span>1" on each of the 2 sides</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SAPP">2</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span><span id="g_TCW">Total Crotch Width (TCW)</span></span><span><span class="dv" data-e="CW">14</span> + <span class="dv" data-e="CPP">½</span> + <span class="dv" data-e="SAPP">2</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCW">16½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Frayed edge trim</span><span>1" on each of the 2 sides</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TRIM">2</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Fabric width each side</span><span><span class="dv" data-e="TCW">16½</span> + <span class="dv" data-e="TRIM">2</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="FW">18½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_1_i3">
+<div class="ph"><div class="nc"><div class="num">3</div></div><div class="tc"><h2>Total Ankle Width (TAW) <span class="tot"><span class="dv" data-e="TAW">12</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The ankle is the narrowest part of a piece. Only 2 pieces meet at each ankle, so the comfort is shared by 2 pieces, not 4.</p></div>
+<div class="step"><b>Step 1:</b> Wrap the measuring tape around your ankle, write the number down with a W at the end, then enter it in the box below.<div class="inp"><label>Your ankle width <input type="number" inputmode="decimal" step="0.125" min="0" class="mi" data-k="AW" placeholder="9"> in W</label><div class="sv">Saved on this device</div></div></div>
+<div class="step"><b>Step 2:</b> Divide the <span class="dv" data-e="COMF">2</span>" of elastic stretch comfort by the 2 pieces at the ankle: <span class="dv" data-e="COMF">2</span> ÷ 2 = <span class="dv" data-e="CPA">1</span>" W.</div>
+<div class="step"><b>Step 3:</b> Add the <span class="dv" data-e="CPA">1</span>" of comfort and the <span class="dv" data-e="SAPP">2</span>" of seam allowance (1" on each of the 2 sides): <span class="dv" data-e="AW">9</span> + <span class="dv" data-e="CPA">1</span> + <span class="dv" data-e="SAPP">2</span> = <span class="dv" data-e="TAW">12</span>" W. This is your TAW.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Measured ankle width</span><span>Around the ankle</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="AW">9</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Comfort per piece</span><span><span class="dv" data-e="COMF">2</span> ÷ 2 pieces at the ankle</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CPA">1</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Seam allowance</span><span>1" on each of the 2 sides</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="SAPP">2</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_TAW">Total Ankle Width (TAW)</span></span><span><span class="dv" data-e="AW">9</span> + <span class="dv" data-e="CPA">1</span> + <span class="dv" data-e="SAPP">2</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TAW">12</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ssec" id="l3_2">
+<div class="ph"><div class="nc"><div class="num">3.2</div></div><div class="tc"><h2>Preparing and Marking the Width</h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Cut the purchased fabric into two sections, fold each section, then mark the width points along the top edge, always measuring from the folded edge. These points are where the crotch rise and the inseam connect later in Drawing the Pattern.</p></div>
+<div class="ssec item" id="l3_2_i1">
+<div class="ph"><div class="nc"><div class="num">1</div></div><div class="tc"><h2>Dividing the Fabric</h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The fabric you bought is one continuous piece. Cut it into two sections: one for the front pieces and one for the rear pieces.</p></div>
+<div class="step"><b>Step 1:</b> Lay the fabric out flat and smooth out the wrinkles.</div>
+<div class="step"><b>Step 2:</b> Start at one end and measure along the edge <span class="dv" data-e="YDIN">72</span>" (the <span class="dv" data-e="YDN">2</span> yards per piece from lesson 2.3). Make a mark.</div>
+<div class="step"><b>Step 3:</b> Use a long straight edge to draw a straight line across the fabric from the mark to the opposite edge.</div>
+<div class="step"><b>Step 4:</b> Cut along the line. You now have two sections: one for the front pieces and one for the rear pieces.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Fabric bought</span><span>Lesson 2.3</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TOTYD">4</span> yd</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Sections</span><span>Front and rear</span><span class="m"><label class="ckw"><b class="v">2</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Length of each section</span><span><span class="dv" data-e="TOTYD">4</span> ÷ 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="YDN">2</span> yd</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_2_i2">
+<div class="ph"><div class="nc"><div class="num">2</div></div><div class="tc"><h2>Folding the Fabric</h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img class="zoom" src="cp_fold.jpg" alt="Fabric folded in half with the folded edge"><div class="clk">click</div></div><div class="desc2"><p>Fold each section in half across its whole width, with the <b class="gt" id="g_RS">right sides</b> together. The <b class="gt" id="g_WRONG">wrong sides</b> then face out, so every mark you make is on the wrong side and is never visible when the pants are worn. You will mark each part of the pattern onto the folded fabric with a marker or white chalk.</p></div></div>
+<div class="step"><b>Step 1:</b> Fold the section in half across its whole width, right sides together, so the wrong sides face out.</div>
+<div class="step"><b>Step 2:</b> Smooth the fabric and line up the open edges so the folded edge is perfectly straight.</div>
+<div class="step"><b>Step 3:</b> Do this for both sections: one for the front pieces and one for the rear pieces.</div>
+<div class="r key"><span>Folded edge</span><b>Perfectly straight: the starting line for every mark</b></div>
+<div class="r key"><span>Right sides</span><b>Together, on the inside</b></div>
+<div class="r key"><span>Wrong sides</span><b>Face out: all marks go here</b></div>
+<div class="r"><span>Sections folded</span><b>Front and rear</b></div>
+</div>
+</div>
+<div class="ssec item" id="l3_2_i3">
+<div class="ph"><div class="nc"><div class="num">3</div></div><div class="tc"><h2>Marking the IWPW Point <span class="tot"><span class="dv" data-e="IWPW">13</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The first width mark is the waistband width of one piece.</p></div>
+<div class="step"><b>Step 1:</b> Start on the folded edge at the top of the fabric and place the measuring device there.</div>
+<div class="step"><b>Step 2:</b> Measure across the top edge <span class="dv" data-e="IWPW">13</span>" and make a mark. This is the IWPW mark.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span>Individual Waistband Pattern Width (IWPW)</span><span>Lesson 3.1, item 1</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="IWPW">13</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_2_i4">
+<div class="ph"><div class="nc"><div class="num">4</div></div><div class="tc"><h2>Marking the TCW Point <span class="tot"><span class="dv" data-e="TCW">16½</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The crotch is the widest part of each piece, so this mark reaches farther across than the IWPW mark.</p></div>
+<div class="step"><b>Step 1:</b> Start on the folded edge at the top of the fabric and place the measuring device there.</div>
+<div class="step"><b>Step 2:</b> Measure across the top edge <span class="dv" data-e="TCW">16½</span>" and make a mark. This is the crotch width mark.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span>Total Crotch Width (TCW)</span><span>Lesson 3.1, item 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCW">16½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ssec" id="l3_3">
+<div class="ph"><div class="nc"><div class="num">3.3</div></div><div class="tc"><h2>Marking the Length <span class="tot"><span class="dv" data-e="TPL">42</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Mark every length along the folded edge, from the raw top edge down: the waistband, the pocket opening and the pants leg. Then measure the crotch rise, mark the crotch marks and the ankle width, and label the pieces.</p></div>
+<div class="ssec item" id="l3_3_i1">
+<div class="ph"><div class="nc"><div class="num">1</div></div><div class="tc"><h2>Marking the Waistband <span class="tot"><span class="dv" data-e="WB">5</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The waistband material is the finished waistband you see plus the waistband seam allowance.</p></div>
+<div class="step"><b>Step 1:</b> Start at the top of the folded edge and place the measuring device there.</div>
+<div class="step"><b>Step 2:</b> Measure down <span class="dv" data-e="WB">5</span>" and make a mark. This is the bottom of the waistband material.</div>
+<div class="step"><b>Step 3:</b> Do this for both the front and the rear sections.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Finished waistband</span><span>The 2" you see</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="FIN">2</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Waistband Seam Allowance (WSA)</span><span>Lesson 1.2, item 2</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WSA">3</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Waistband material</span><span><span class="dv" data-e="FIN">2</span> + <span class="dv" data-e="WSA">3</span>, from the top</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WB">5</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i2">
+<div class="ph"><div class="nc"><div class="num">2</div></div><div class="tc"><h2>Marking the Pocket Opening <span class="tot"><span class="dv" data-e="POCK">7½</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The pocket opening is the gap where the hand goes in. It is bounded by two marks: the <b class="gt" id="g_TPM">Top Pocket Mark (TPM)</b> and the <b class="gt" id="g_BPM">Bottom Pocket Mark (BPM)</b>.</p></div>
+<div class="step"><b>Step 1:</b> Start on the waistband mark (<span class="dv" data-e="WB">5</span>") on the folded edge and measure <span class="dv" data-e="GAP">1</span>" down. Make a mark and write TPM above it.</div>
+<div class="step"><b>Step 2:</b> Start on the TPM and measure <span class="dv" data-e="POCK">7½</span>" down. Make a mark and write BPM below it.</div>
+<div class="step"><b>Step 3:</b> The space between TPM and BPM stays open when the side seam is sewn. This is where the hand goes in.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Waistband mark</span><span>From the raw top edge</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WB">5</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Gap below the waistband</span><span>Top Pocket Mark (TPM) sits <span class="dv" data-e="GAP">1</span>" below</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="GAP">1</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Pocket opening</span><span>Where the hand goes in</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="POCK">7½</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Bottom Pocket Mark (BPM)</span><span><span class="dv" data-e="WB">5</span> + <span class="dv" data-e="GAP">1</span> + <span class="dv" data-e="POCK">7½</span>, from the top</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="BPM">13½</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i3">
+<div class="ph"><div class="nc"><div class="num">3</div></div><div class="tc"><h2>Marking BPM to Ankle <span class="tot"><span class="dv" data-e="BTA">28½</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>This is the pattern material for the pants leg and the ankle. It is the remainder of the TPL after the marks already made.</p></div>
+<div class="step"><b>Step 1:</b> Start on the BPM (<span class="dv" data-e="BPM">13½</span>") and measure <span class="dv" data-e="BTA">28½</span>" down the folded edge.</div>
+<div class="step"><b>Step 2:</b> Make a mark at the bottom. This is the bottom edge of the pattern, <span class="dv" data-e="TPL">42</span>" from the top.</div>
+<div class="step"><b>Step 3:</b> Do this for both the front and the rear sections.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Total Pattern Length (TPL)</span><span>Lesson 1.2, item 4</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TPL">42</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Waistband mark</span><span>Already used</span><span class="m"><label class="ckw"><b class="v">−<span class="dv" data-e="WB">5</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Gap below the waistband</span><span>Already used</span><span class="m"><label class="ckw"><b class="v">−<span class="dv" data-e="GAP">1</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Pocket opening</span><span>Already used</span><span class="m"><label class="ckw"><b class="v">−<span class="dv" data-e="POCK">7½</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>BPM to ankle</span><span><span class="dv" data-e="TPL">42</span> − <span class="dv" data-e="WB">5</span> − <span class="dv" data-e="GAP">1</span> − <span class="dv" data-e="POCK">7½</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="BTA">28½</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i4">
+<div class="ph"><div class="nc"><div class="num">4</div></div><div class="tc"><h2>Total Crotch Length (TCL) <span class="tot"><span class="dv" data-e="TCL">17</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img class="zoom" src="cp_tcl.jpg" alt="Pattern piece with the vertical line along the folded edge showing the waistband allowance, finished crotch length and comfort"><div class="clk">click</div></div><div class="desc2"><p>The TCL is a straight vertical distance, not the length of the curve. It starts at the raw top edge and runs straight down the folded edge to the level of the bottom crotch mark (BCM). It is the same for the front and the rear pieces.</p></div></div>
+<div class="step"><b>Step 1:</b> Place a measuring tape or a carpenter's square flat against your stomach. Measure straight down from the top of the waistband to where the crotch meets the ruler. Write the number down with an L at the end. This is your FCL. Enter it in the box below.<div class="fig"><img class="zoom" src="cp_vertical_length.jpg" alt="Front view: vertical length from the top of the waistband to the center of the crotch"><div class="clk">click</div></div><div class="inp"><label>Your finished crotch length (FCL) <input type="number" inputmode="decimal" step="0.125" min="0" class="mi" data-k="FCL" placeholder="12"> in L</label><div class="sv">Saved on this device</div></div></div>
+<div class="step"><b>Step 2:</b> Add <span class="dv" data-e="CCOMF">2</span>" of comfort and the <span class="dv" data-e="WSA">3</span>" waistband seam allowance (<span class="dv" data-e="WBF">2</span>" fold + <span class="dv" data-e="WBS">1</span>" sewn): <span class="dv" data-e="FCL">12</span> + <span class="dv" data-e="CCOMF">2</span> + <span class="dv" data-e="WSA">3</span> = <span class="dv" data-e="TCL">17</span>" L. This is your TCL, the same for the front and the rear.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span><span id="g_FCL">Finished Crotch Length (FCL)</span></span><span>Top of waistband to the crotch, measured straight</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="FCL">12</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Comfort</span><span>Room to move</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="CCOMF">2</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Waistband Seam Allowance (WSA)</span><span>Lesson 1.2, item 2, above the finished top</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WSA">3</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span><span id="g_TCL">Total Crotch Length (TCL)</span></span><span><span class="dv" data-e="FCL">12</span> + <span class="dv" data-e="CCOMF">2</span> + <span class="dv" data-e="WSA">3</span></span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCL">17</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i5">
+<div class="ph"><div class="nc"><div class="num">5</div></div><div class="tc"><h2>Marking the Bottom Crotch Mark (BCM) <span class="tot"><span class="dv" data-e="TCL">17</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The <b class="gt" id="g_BCM">Bottom Crotch Mark (BCM)</b> is where the crotch rise ends. The rise length down the folded edge is the same for the front and the rear sections, so the BCM sits at the same level on both. It is the point where the rise length and the crotch width meet.</p></div>
+<div class="step"><b>Step 1:</b> Start at the top of the folded edge and place the measuring device there.</div>
+<div class="step"><b>Step 2:</b> Measure straight down the folded edge <span class="dv" data-e="TCL">17</span>" (the TCL from item 4) and make a mark. This is the mark that will intersect the crotch width.</div>
+<div class="step"><b>Step 3:</b> From that mark, measure across the fabric <span class="dv" data-e="TCW">16½</span>" (the TCW from lesson 3.1, item 2) and make a mark. This is the BCM.</div>
+<div class="step"><b>Step 4:</b> Do this for both the front and the rear sections.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Total Crotch Length (TCL)</span><span>Item 4, down the folded edge</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCL">17</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Total Crotch Width (TCW)</span><span>Lesson 3.1, item 2, across</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCW">16½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Bottom Crotch Mark (BCM)</span><span>Down, then across</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCL">17</span>" L · <span class="dv" data-e="TCW">16½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i6">
+<div class="ph"><div class="nc"><div class="num">6</div></div><div class="tc"><h2>Marking the Top Crotch Mark (TCM) <span class="tot"><span class="dv" data-e="WSA">3</span>" L</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The <b class="gt" id="g_TCM">Top Crotch Mark (TCM)</b> is where the crotch rise begins. It sits straight down from the IWPW mark, where the waistband folds down.</p></div>
+<div class="step"><b>Step 1:</b> Start at the IWPW mark (<span class="dv" data-e="IWPW">13</span>") you made on the top edge and place the measuring device there.</div>
+<div class="step"><b>Step 2:</b> Measure <span class="dv" data-e="WSA">3</span>" straight down and make a mark. This is the TCM, where the curve begins.</div>
+<div class="step"><b>Step 3:</b> Do this for both the front and the rear sections.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Waistband seam allowance</span><span>Sewn seam</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WBS">1</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Waistband fold</span><span>Folds down</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WBF">2</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Top Crotch Mark (TCM)</span><span><span class="dv" data-e="WBS">1</span> + <span class="dv" data-e="WBF">2</span>, straight down from the IWPW mark</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="WSA">3</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i7">
+<div class="ph"><div class="nc"><div class="num">7</div></div><div class="tc"><h2>Marking the TAW Point <span class="tot"><span class="dv" data-e="TAW">12</span>" W</span></h2></div></div>
+<div class="sbody">
+<div class="desc"><p>The ankle mark is the width of the bottom of one piece.</p></div>
+<div class="step"><b>Step 1:</b> Start on the folded edge at the bottom line you marked and place the measuring device there.</div>
+<div class="step"><b>Step 2:</b> Measure across the bottom line <span class="dv" data-e="TAW">12</span>" and make a mark. This is the ankle mark.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3 tot"><span>Total Ankle Width (TAW)</span><span>Lesson 3.1, item 3</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TAW">12</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+<div class="ssec item" id="l3_3_i8">
+<div class="ph"><div class="nc"><div class="num">8</div></div><div class="tc"><h2>Crotch Rise Front (CRF) <span class="tot">17" L</span></h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img alt="Front piece with the dotted crotch rise between TCM and BCM" class="zoom" src="cp_crotch_rise_front.jpg"/><div class="clk">click</div></div><div class="desc2"><p>The <b class="gt" id="g_CR">Crotch Rise (CR)</b> is the curved line that connects the <b class="gt">Top Crotch Mark (TCM)</b> and the <b class="gt">Bottom Crotch Mark (BCM)</b>. The front crotch rise (CRF) is the narrower curve. It is measured along the line, not straight down like the TCL.</p></div></div><div class="step"><b>Step 1:</b> Lay a flexible measuring tape along the curve from the TCM to the BCM on a front piece.</div><div class="step"><b>Step 2:</b> Write the length down with an L at the end. This is your CRF. The same length is used for both front pieces (LF and RF).</div><div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Top Crotch Mark (TCM)</span><span>Start of the curve, at the IWPW mark</span><span class="m"><label class="ckw"><b class="v">3" L</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3"><span>Bottom Crotch Mark (BCM)</span><span>End of the curve, same level on every piece</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCL">17</span>" L</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3 tot"><span id="g_CRF">Crotch Rise Front (CRF)</span><span>Measured along the curve, TCM to BCM</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCL">17</span>" L</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div></div></div>
+</div>
+<div class="ssec item" id="l3_3_i9">
+<div class="ph"><div class="nc"><div class="num">9</div></div><div class="tc"><h2>Crotch Rise Rear (CRR) <span class="tot">22" L</span></h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img alt="Rear piece with the dotted crotch rise between TCM and BCM" class="zoom" src="cp_crotch_rise_rear.jpg"/><div class="clk">click</div></div><div class="desc2"><p>The rear crotch rise (CRR) is the wider, longer curve. The TCM and the BCM are on the same marks as the front, so the BCM sits at the same level. Only the curve between them is wider. The crotch points of the front and rear pieces meet at the same place.</p></div></div><div class="step"><b>Step 1:</b> Lay a flexible measuring tape along the curve from the TCM to the BCM on a rear piece.</div><div class="step"><b>Step 2:</b> Write the length down with an L at the end. This is your CRR. The same length is used for both rear pieces (LR and RR).</div><div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Top Crotch Mark (TCM)</span><span>Start of the curve, at the IWPW mark</span><span class="m"><label class="ckw"><b class="v">3" L</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3"><span>Bottom Crotch Mark (BCM)</span><span>End of the curve, same level on every piece</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCL">17</span>" L</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3 tot"><span id="g_CRR">Crotch Rise Rear (CRR)</span><span>Measured along the curve, TCM to BCM</span><span class="m"><label class="ckw"><b class="v">22" L</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div></div></div>
+</div>
+<div class="ssec item" id="l3_3_i10">
+<div class="ph"><div class="nc"><div class="num">10</div></div><div class="tc"><h2>Marking the Labels</h2></div></div>
+<div class="sbody">
+<div class="desc">Each of the 4 pieces gets its own two-letter label: L or R for left or right, and F or R for front or rear. Write the label on the wrong side, near the top corner of the straight (folded) edge, so it ends up inside the finished pants and is never seen. Decide which folded pair is the front and which is the rear before the curves are drawn. The rear crotch rise is the larger one.</div><div class="step"><b>Step 1:</b> Label both layers of each folded pair with the two-letter label.</div><div class="step"><b>Step 2:</b> Write on the wrong side only, never the right side that is seen.</div><div class="step"><b>Step 3:</b> Write near the top corner of the straight edge, so the label ends up inside the finished pants.</div><div class="step"><b>Step 4:</b> Check that you have LF, RF, LR and RR before you draw.</div><span id="g_LBL"></span><div class="t"><div class="tr h c3"><span>Label</span><span>Piece</span><span>Pieces</span></div><div class="tr c3"><span>LF</span><span>Left Front</span><span class="m"><label class="ckw"><b class="v">1</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3"><span>RF</span><span>Right Front</span><span class="m"><label class="ckw"><b class="v">1</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3"><span>LR</span><span>Left Rear</span><span class="m"><label class="ckw"><b class="v">1</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div><div class="tr c3"><span>RR</span><span>Right Rear</span><span class="m"><label class="ckw"><b class="v">1</b><input aria-label="counted" class="ck" type="checkbox"/></label></span></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel" id="m4">
+<div class="ph sec"><div class="nc"><div class="num">4</div></div><div class="tc"><h2>Drawing the Pattern</h2></div></div>
+<div class="pb">
+<div class="top"><div class="desc2"><p>Draw the pattern lines on the fabric with white chalk by connecting the marks from section 3: first the crotch rise between the TCM and the BCM, then the inseam from the BCM to the ankle mark.</p></div></div>
+<div class="ssec" id="l4_1">
+<div class="ph"><div class="nc"><div class="num">4.1</div></div><div class="tc"><h2>Drawing the Crotch Rise</h2></div></div>
+<div class="sbody">
+<div class="desc">Draw the crotch rise (CR) on every piece. The front pieces use the CRF from lesson 3.3, item 8 and the rear pieces use the CRR from lesson 3.3, item 9. The marks are the same on every piece, so the rear curve is only wider.</div><div class="step"><b>Step 1:</b> Place one end of the string or tape ½" from the TCM.</div><div class="step"><b>Step 2:</b> Curve the string or tape smoothly between the two marks, keeping it ½" from where the line will go.</div><div class="step"><b>Step 3:</b> Place the other end ½" from the BCM. The curve ends here.</div><div class="step"><b>Step 4:</b> Check that the string or tape lies smooth and round, with no kinks.</div><div class="step"><b>Step 5:</b> Draw the chalk line right beside the string or tape from the TCM to the BCM.</div><div class="step"><b>Step 6:</b> Do both the front pieces (LF and RF) and the rear pieces (LR and RR).</div></div>
+</div>
+<div class="ssec" id="l4_2">
+<div class="ph"><div class="nc"><div class="num">4.2</div></div><div class="tc"><h2>Drawing the Inseam</h2></div></div>
+<div class="sbody">
+<div class="top"><div class="topfig"><img class="zoom" src="cp_inseam.jpg" alt="Left front piece with a long ruler laid from the BCM to the ankle mark"><div class="clk">click</div></div><div class="desc2"><p>The <b class="gt" id="g_INS">Inseam</b> is the straight line from the BCM to the ankle mark. Lay a long ruler on the two marks, then draw the line beside it. Do both the front and the rear pieces.</p></div></div>
+<div class="step"><b>Step 1:</b> Place a long ruler so it touches the BCM and the ankle mark.</div>
+<div class="step"><b>Step 2:</b> Draw a straight line between the two marks with white chalk.</div>
+<div class="step"><b>Step 3:</b> Do both the front and the rear pieces.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Bottom Crotch Mark (BCM)</span><span>Across and down</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCW">16½</span>" W · <span class="dv" data-e="TCL">17</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Ankle mark</span><span>Across and down</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TAW">12</span>" W · <span class="dv" data-e="TPL">42</span>" L</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel" id="m5">
+<div class="ph sec"><div class="nc"><div class="num">5</div></div><div class="tc"><h2>Cutting</h2></div></div>
+<div class="pb">
+<div class="top"><div class="desc2"><p>Cut the pattern out along the lines drawn in section 4. Cut the crotch rise and the inseam first, then the folded edge, then trim the sides and the bottom. Cut only after all marking and drawing is finished.</p></div></div>
+<div class="ssec" id="l5_1">
+<div class="ph"><div class="nc"><div class="num">5.1</div></div><div class="tc"><h2>Cut the Crotch Edge</h2></div></div>
+<div class="sbody">
+<div class="desc">Cut the crotch rise and the inseam first, before the folded edge, so the two layers stay aligned. Cut only after all marking and drawing is finished.</div><div class="step"><b>Step 1:</b> Check that every mark and line is drawn and every piece is labeled before you cut.</div><div class="step"><b>Step 2:</b> Cut along the chalk crotch rise, from the TCM to the BCM, for the front pattern and the rear pattern.</div><div class="step"><b>Step 3:</b> Cut along the inseam, from the BCM to the ankle mark.</div><div class="step"><b>Step 4:</b> Leave the folded edge uncut for now.</div><div class="r key"><span>Order</span><b>Crotch curve and inseam first, folded edge second</b></div><div class="r"><span>Why</span><b>The fold holds both layers in line while the curve is cut</b></div><div class="r"><span>Pieces</span><b>Front and rear patterns</b></div></div>
+</div>
+<div class="ssec" id="l5_2">
+<div class="ph"><div class="nc"><div class="num">5.2</div></div><div class="tc"><h2>Cut the Folded Edge</h2></div></div>
+<div class="sbody">
+<div class="desc">Cutting the folded edge separates each mirrored pair into two individual pieces.</div><div class="step"><b>Step 1:</b> Cut the folded edge from top to bottom on the front pattern.</div><div class="step"><b>Step 2:</b> Cut the folded edge from top to bottom on the rear pattern.</div><div class="step"><b>Step 3:</b> Check that you now have LF, RF, LR and RR.</div><div class="r key"><span>Folded edge</span><b>Cut from top to bottom</b></div><div class="r"><span>Result</span><b>2 front + 2 rear = 4 pieces</b></div></div>
+</div>
+<div class="ssec" id="l5_3">
+<div class="ph"><div class="nc"><div class="num">5.3</div></div><div class="tc"><h2>Cut the Edges and Bottom</h2></div></div>
+<div class="sbody">
+<div class="desc"><p>Trim the frayed factory edges and cut the bottom of each piece along the line you marked.</p></div>
+<div class="step"><b>Step 1:</b> Trim the 1" frayed factory edge off each side.</div>
+<div class="step"><b>Step 2:</b> Cut across the bottom at the <span class="dv" data-e="TPL">42</span>" line.</div>
+<div class="step"><b>Step 3:</b> Repeat the same steps for the other pieces.</div>
+<div class="t"><div class="tr h c3"><span>Part</span><span>Detail</span><span>Value</span></div><div class="tr c3"><span>Fabric width each side</span><span>TCW + 1" trim on each side</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="FW">18½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3"><span>Trim, each side</span><span>Frayed factory edge</span><span class="m"><label class="ckw"><b class="v">1" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div><div class="tr c3 tot"><span>Total Crotch Width (TCW)</span><span><span class="dv" data-e="FW">18½</span> − 1 − 1</span><span class="m"><label class="ckw"><b class="v"><span class="dv" data-e="TCW">16½</span>" W</b><input type="checkbox" class="ck" aria-label="counted"></label></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel" id="m6">
+<div class="ph sec"><div class="nc"><div class="num">6</div></div><div class="tc"><h2>Sewing the Pants</h2></div></div>
+<div class="pb">
+<div class="top"><div class="desc2"><p>Sew the pants in order: the top waist seam, the eyelets and the waistband, the ankle hems, the rear and front center seams, the zipper, the pockets, and last the side seams that join the front and the rear.</p></div></div>
+<div class="ssec" id="l6_1">
+<div class="ph"><div class="nc"><div class="num">6.1</div></div><div class="tc"><h2>Sew the Top Waist Seam</h2></div></div>
+<div class="sbody">
+<div class="desc">Fold the top edge down and sew the top waist seam across each piece before anything else is attached.</div><div class="step"><b>Step 1:</b> Fold the top edge down to the top seam mark with the wrong sides together, so only the right sides show.</div><div class="step"><b>Step 2:</b> Sew the seam across the pattern piece.</div><div class="step"><b>Step 3:</b> Repeat for every piece.</div><div class="r"><span>Fold</span><b>Top edge down to the top seam mark, wrong sides together</b></div><div class="r"><span>Seam</span><b>Across the pattern piece</b></div><div class="r"><span>Seam allowance</span><b>1" at the waistband</b></div></div>
+</div>
+<div class="ssec" id="l6_2">
+<div class="ph"><div class="nc"><div class="num">6.2</div></div><div class="tc"><h2>Set the Waistband Eyelets</h2></div></div>
+<div class="sbody">
+<div class="desc">Eyelets reinforce the drawstring holes. Install them before the waistband is sewn shut.</div><div class="step"><b>Step 1:</b> Fold the waistband to the 5" mark.</div><div class="step"><b>Step 2:</b> On the outside center, mark two dots where the eyelets will go.</div><div class="step"><b>Step 3:</b> Heat the tip of a round screwdriver and burn two holes so each eyelet fits snugly.</div><div class="step"><b>Step 4:</b> Press the eyelets in before pinning or sewing the waistband.</div><div class="step"><b>Step 5:</b> Do this now. Adding eyelets after the waistband is shut is very difficult.</div><div class="r"><span>Fold</span><b>Waistband to the 5" mark</b></div><div class="r"><span>Mark</span><b>Two dots on the outside center</b></div><div class="r"><span>Holes</span><b>Burn two with a heated round screwdriver tip</b></div><div class="r key"><span>Eyelets</span><b>Press in before pinning or sewing the waistband</b></div></div>
+</div>
+<div class="ssec" id="l6_3">
+<div class="ph"><div class="nc"><div class="num">6.3</div></div><div class="tc"><h2>Sew the Waistband</h2></div></div>
+<div class="sbody">
+<div class="desc">Fold, pin, thread the drawstring, then sew the waistband shut in order for a clean, flat result.</div><div class="step"><b>Step 1:</b> Fold the fabric down to the 5" marks on each side with the wrong sides together, and flatten it with a straight edge.</div><div class="step"><b>Step 2:</b> Pin with two pins on the outer edges and one in the middle, leaving room to thread the cordage.</div><div class="step"><b>Step 3:</b> Place the drawstring and elastic on top of the top seam, ¼" from the top.</div><div class="step"><b>Step 4:</b> Sew the elastic waistband to the pattern piece, even with the inner edge.</div><div class="step"><b>Step 5:</b> Thread the cordage in through one eyelet and out the other.</div><div class="step"><b>Step 6:</b> Sew a 1" seam across the bottom edge, then across the top edge.</div><div class="r"><span>Fold</span><b>Down to the 5" horizontal marks, each side</b></div><div class="r"><span>Pins</span><b>Two on the outer edges, one in the middle</b></div><div class="r"><span>Elastic</span><b>On the top seam, ¼" from the top, even with the inner edge</b></div><div class="r"><span>Cordage</span><b>In through one eyelet, around inside, out the other</b></div><div class="r key"><span>Bottom edge</span><b>1" seam all the way across</b></div><div class="r key"><span>Top edge</span><b>1" seam all the way across</b></div></div>
+</div>
+<div class="ssec" id="l6_4">
+<div class="ph"><div class="nc"><div class="num">6.4</div></div><div class="tc"><h2>Sew the Ankle Seams</h2></div></div>
+<div class="sbody">
+<div class="desc">The final hem on each leg: a simple fold closes the bottom and prevents fraying.</div><div class="step"><b>Step 1:</b> The ankle seam is two ½" folds from the bottom of the leg pieces.</div><div class="step"><b>Step 2:</b> Fold the material up ½" with the wrong sides together and press flat.</div><div class="step"><b>Step 3:</b> Sew a seam ¼" from the frayed edge, on the inner side of the fold.</div><div class="step"><b>Step 4:</b> Fold it up again and sew another ½" seam to cover the first seam.</div><div class="step"><b>Step 5:</b> This double fold keeps the frayed edges hidden inside.</div><div class="step"><b>Step 6:</b> Press with an iron before sewing for a flatter edge, then repeat for the other leg.</div><div class="r"><span>First fold</span><b>Up ½" from the bottom; seam ¼" from the frayed edge, inner side of fold</b></div><div class="r"><span>Second fold</span><b>Fold up again; sew another ½" seam to cover the first</b></div><div class="r"><span>Repeat</span><b>Every leg</b></div></div>
+</div>
+<div class="ssec" id="l6_5">
+<div class="ph"><div class="nc"><div class="num">6.5</div></div><div class="tc"><h2>Sew the Rear Pieces Together</h2></div></div>
+<div class="sbody">
+<div class="desc">Sew the two rear pieces together at the center first, so the right sides stay oriented correctly.</div><div class="step"><b>Step 1:</b> Sew the two rear pieces together at the center first.</div><div class="step"><b>Step 2:</b> This keeps the orientation right: you can always tell the rear by the mark or the top waist seam.</div><div class="step"><b>Step 3:</b> Sewing the rear seams first keeps the right sides oriented correctly as you flip and sew the edges.</div><div class="step"><b>Step 4:</b> Finish the rear seams before sewing the front pieces to the back.</div><div class="r"><span>Position</span><b>Two rear pieces, right sides facing each other</b></div><div class="r key"><span>Seam</span><b>1" from top edge to bottom, center rear edge</b></div><div class="r"><span>Finish</span><b>All rear seams done before the front is sewn to the back</b></div></div>
+</div>
+<div class="ssec" id="l6_6">
+<div class="ph"><div class="nc"><div class="num">6.6</div></div><div class="tc"><h2>Sew the Front Pieces Together</h2></div></div>
+<div class="sbody">
+<div class="desc">Sew the two front pieces together along the center front edge, right sides facing each other.</div><div class="step"><b>Step 1:</b> Place the two front pieces together with right sides facing each other.</div><div class="step"><b>Step 2:</b> Sew a 1" seam from top to bottom along the center front edge.</div><div class="step"><b>Step 3:</b> Right sides together means the finished outside faces inward, so the seam hides when worn.</div><div class="r"><span>Position</span><b>Two front pieces, right sides facing each other</b></div><div class="r key"><span>Seam</span><b>1" from top to bottom, center front edge</b></div></div>
+</div>
+<div class="ssec" id="l6_7">
+<div class="ph"><div class="nc"><div class="num">6.7</div></div><div class="tc"><h2>Sew the Zipper</h2></div></div>
+<div class="sbody">
+<div class="desc">Flatten the center front seam flaps and sew the zipper onto them.</div><div class="step"><b>Step 1:</b> Lay both front pieces flat with right sides facing down.</div><div class="step"><b>Step 2:</b> Flatten the two 1" seam flaps and crease them several times with a straight edge.</div><div class="step"><b>Step 3:</b> Place the zipper right side down, centered over the seam.</div><div class="step"><b>Step 4:</b> Sew the zipper onto the flaps.</div><div class="r"><span>Pieces</span><b>Both front pieces flat, right sides facing down</b></div><div class="r"><span>Flaps</span><b>Flatten the two 1" seam flaps; crease several times</b></div><div class="r"><span>Zipper</span><b>Right side down, centered over the seam</b></div><div class="r key"><span>Sew</span><b>Zipper onto the flaps</b></div></div>
+</div>
+<div class="ssec" id="l6_8">
+<div class="ph"><div class="nc"><div class="num">6.8</div></div><div class="tc"><h2>Mark the Pocket Position</h2></div></div>
+<div class="sbody">
+<div class="desc">With the waistband sewn, find and mark the spot where each pocket will be sewn.</div><div class="step"><b>Step 1:</b> With the waistband sewn, fold it down.</div><div class="step"><b>Step 2:</b> Measure 1" from the bottom of the waistband to find the spot where the pocket will be sewn.</div><div class="step"><b>Step 3:</b> Mark the location with the marker.</div><div class="step"><b>Step 4:</b> Do this for both front pieces.</div><div class="r"><span>Waistband</span><b>Fold down so the waist seam is in place</b></div><div class="r key"><span>Pocket spot</span><b>1" from the bottom of the waistband</b></div><div class="r"><span>Pieces</span><b>Both front pieces</b></div></div>
+</div>
+<div class="ssec" id="l6_9">
+<div class="ph"><div class="nc"><div class="num">6.9</div></div><div class="tc"><h2>Sew the Pockets</h2></div></div>
+<div class="sbody">
+<div class="desc">Two methods are available: a patch pocket on the outside, or an in-seam pocket hidden in the side seam.</div><div class="step"><b>Step 1:</b> Choose one method: a patch pocket on the outside, or an in-seam pocket hidden in the side seam.</div><div class="step"><b>Step 2:</b> For the patch pocket, sew it on with right sides together, flip it, crease, and sew a locking seam.</div><div class="step"><b>Step 3:</b> For the in-seam pocket, leave the opening between TPM and BPM unsewn and attach the pocket fabric to it.</div><div class="step"><b>Step 4:</b> The in-seam method is cleaner because the pocket is invisible from the outside.</div><div class="r"><span>Step 1</span><b>Pocket piece on pants piece, right sides together; sew the two edges</b></div><div class="r"><span>Step 2</span><b>Fold pocket over so both right sides show; crease edges</b></div><div class="r"><span>Step 3</span><b>Locking seam 1" from the edge</b></div><div class="r"><span>Repeat</span><b>All four sides — front and rear, left and right</b></div><div class="r"><span>Step 1</span><b>Sew from top edge down to the TPM mark; stop, cut thread</b></div><div class="r"><span>Step 2</span><b>Move needle to the BPM mark; sew down to the ankle; cut thread</b></div><div class="r"><span>Step 3</span><b>Attach pocket fabric to each side of the opening</b></div><div class="r"><span>Step 4</span><b>Sew pocket pieces together along their outer edges</b></div></div>
+</div>
+<div class="ssec" id="l6_10">
+<div class="ph"><div class="nc"><div class="num">6.10</div></div><div class="tc"><h2>Join Front & Rear</h2></div></div>
+<div class="sbody">
+<div class="desc">Connect the front and rear panels to form the full pants shape, routing carefully around the pocket openings.</div><div class="step"><b>Step 1:</b> Place the rear and front pieces together with right sides facing in.</div><div class="step"><b>Step 2:</b> Sew the outer edges from the top of the waistband, stopping 1" before the TPM mark.</div><div class="step"><b>Step 3:</b> Sew around the pocket pieces until you reach the BPM mark.</div><div class="step"><b>Step 4:</b> Continue sewing from the BPM mark all the way down to the ankle.</div><div class="step"><b>Step 5:</b> Skip the pocket slot, then repeat everything on the other side.</div><div class="r"><span>Position</span><b>Front and rear, right sides facing each other</b></div><div class="r"><span>Step 1</span><b>Sew outer edges from the waistband top; stop 1" before the TPM mark</b></div><div class="r"><span>Step 2</span><b>Sew around the edges of both pocket pieces until the BPM mark</b></div><div class="r"><span>Step 3</span><b>Continue the outer edges from the BPM mark down to the ankle</b></div><div class="r key"><span>Pocket slot</span><b>7½" long, skipped to finish the rest of the seam</b></div><div class="r"><span>Repeat</span><b>All steps for the other side</b></div></div>
+</div>
+</div>
+</div>
+<div class="foot"><i>◆</i> Cozy Pants complete <i>◆</i></div>
+<div id="abar"><div class="a1"></div><div class="a2"></div><div class="a3"></div><div class="a4"></div><button class="abx" type="button">close</button></div>
+<div id="zoomov"><span class="x">tap to close</span><img alt=""></div>
+<script>
+(function(){
+  function backTo(el){
+    document.querySelectorAll('.back').forEach(function(b){ b.remove(); });
+    if(!el) return;
+    var target = el.classList.contains('panel')||el.classList.contains('ssec') ? el.querySelector('.ph') : (el.closest('.ssec')||el.closest('.panel')||document.body).querySelector('.ph');
+    if(!target) return;
+    var btn = document.createElement('a');
+    btn.className = 'back'; btn.href = '#contents'; btn.textContent = '\u2191 Index';
+    btn.addEventListener('click', function(){ setTimeout(function(){ btn.remove(); }, 50); });
+    target.appendChild(btn);
+  }
+  document.querySelectorAll('.toc a, .gl a').forEach(function(link){
+    link.addEventListener('click', function(){ backTo(document.querySelector(link.getAttribute('href'))); });
+  });
+  var gb=document.getElementById('gbtn'), gl=document.getElementById('gl');
+  gb.addEventListener('click', function(){ var on=gl.classList.toggle('on'); gb.querySelector('span').textContent = on ? '\u2212' : '+'; });
+  var ov=document.getElementById('zoomov'), oi=ov.querySelector('img');
+  document.querySelectorAll('img.zoom').forEach(function(im){
+    im.addEventListener('click', function(){ oi.src=im.src; ov.classList.add('on'); });
+  });
+  ov.addEventListener('click', function(){ ov.classList.remove('on'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') ov.classList.remove('on'); });
+
+  /* ---- numbers: inputs, formulas, live update ---- */
+  var C={"SAW": 1, "SIDES": 2, "PIECES": 4, "COMF": 2, "TRIM": 2, "WBF": 2, "WBS": 1, "ANK": 1, "FIN": 2, "GAP": 1, "POCK": 7.5, "CORD": 22, "YD": 36, "CCOMF": 2}, DEF={"WS": 42, "CW": 14, "AW": 9, "PML": 38, "FCL": 12}, F=[["TSA", "SAW*SIDES*PIECES"], ["TPW", "WS+TSA+COMF"], ["WSPP", "WS/PIECES"], ["CPP", "COMF/PIECES"], ["SAPP", "SAW*SIDES"], ["IWPW", "WSPP+CPP+SAPP"], ["TCW", "CW+CPP+SAPP"], ["FW", "TCW+TRIM"], ["ROOM", "CORD-FW"], ["CPA", "COMF/2"], ["TAW", "AW+CPA+SAPP"], ["WSA", "WBF+WBS"], ["TPL", "PML+WSA+ANK"], ["WB", "FIN+WSA"], ["TPM", "WB+GAP"], ["BPM", "TPM+POCK"], ["BTA", "TPL-BPM"], ["TCL", "FCL+CCOMF+WSA"], ["SQIN", "CORD*TPL"], ["SQYD", "CORD*YD"], ["YDS", "SQIN/SQYD"], ["YDN", "ceil(YDS)"], ["YDIN", "YDN*YD"], ["TOTYD", "YDN*2"], ["LEFT", "YDIN-TPL"]], VAL={"WS": ["WS", " W", ["WS"]], "WSPP": ["WSPP", " W", ["WS"]], "TPW": ["TPW", " W", ["WS"]], "IWPW": ["IWPW", " W", ["WS"]], "TCW": ["TCW", " W", ["CW"]], "TAW": ["TAW", " W", ["AW"]], "PML": ["PML", " L", ["PML"]], "TPL": ["TPL", " L", ["PML"]], "BTA": ["BTA", " L", ["PML"]], "FCL": ["FCL", " L", ["FCL"]], "TCL": ["TCL", " L", ["FCL"]], "BCM": ["TCL", " L", ["FCL"]]};
+  var FRs=['','\u215b','\u00bc','\u215c','\u00bd','\u215d','\u00be','\u215e'];
+  function fmt(x,dec){
+    if(dec) return (Math.round(x*100)/100).toString();
+    var r=Math.round(x*8)/8;
+    if(Math.abs(x-r)<1e-9){ var w=Math.floor(r), f=Math.round((r-w)*8); return (w||!f?String(w):'')+FRs[f]; }
+    return (Math.round(x*100)/100).toString();
+  }
+  function rd(k){ try{ var v=parseFloat(localStorage.getItem('cp2_in_'+k)); return isNaN(v)?null:v; }catch(e){ return null; } }
+  var fns=F.map(function(p){ return [p[0], new Function('e','ceil','with(e){return '+p[1]+'}')]; });
+  function env(){
+    var e={}, k;
+    for(k in C) e[k]=C[k];
+    for(k in DEF){ var v=rd(k); e[k]=(v==null?DEF[k]:v); }
+    fns.forEach(function(f){ e[f[0]]=f[1](e,Math.ceil); });
+    return e;
+  }
+  function calc(){
+    var e=env();
+    document.querySelectorAll('.dv').forEach(function(s){ var n=s.getAttribute('data-e'); if(e[n]!=null) s.textContent=fmt(e[n],s.hasAttribute('data-d')); });
+  }
+  document.querySelectorAll('.mi').forEach(function(i){
+    var k=i.getAttribute('data-k'), v=rd(k); if(v!=null) i.value=v;
+    i.addEventListener('input', function(){ try{ if(i.value==='') localStorage.removeItem('cp2_in_'+k); else localStorage.setItem('cp2_in_'+k,i.value); }catch(e){}
+      document.querySelectorAll('.mi[data-k="'+k+'"]').forEach(function(o){ if(o!==i) o.value=i.value; }); calc(); });
+  });
+  calc();
+
+  /* ---- abbreviations: tap for the definition and your own measurement ---- */
+  var AB={"TPW": ["Total Pattern Width", "The waist size plus the Total Seam Allowance plus the elastic stretch comfort, for all 4 pieces."], "TPL": ["Total Pattern Length", "The finished pants length plus the waistband and ankle seam allowances. How long each piece is cut."], "SA": ["Seam Allowance", "The extra material at a seam that is sewn or folded out of sight: 1\" on every edge."], "TSA": ["Total Seam Allowance", "All the seam allowances across the width added together."], "SAW": ["Seam Allowance Width", "The width of the seam allowance on one side: 1\" W."], "WS": ["Waist Size", "Your measurement around the waist where the pants sit."], "WSPP": ["Waist Size Per Piece", "The waist size divided by the 4 pieces."], "IWPW": ["Individual Waistband Pattern Width", "The waistband pattern width of one piece: the waist size per piece plus the comfort per piece plus the seam allowance."], "IPPW": ["Individual Pattern Piece Width", "The width of one pattern piece, found at the waist (IWPW), the crotch (TCW) and the ankle (TAW)."], "TCW": ["Total Crotch Width", "The crotch width plus the comfort per piece plus the seam allowance, the widest part of a piece. The frayed edge trim is added after it to give the fabric width each side."], "TAW": ["Total Ankle Width", "The ankle width plus the comfort shared by the 2 pieces at the ankle plus the seam allowance."], "FCL": ["Finished Crotch Length", "Your measurement from the top of the finished waistband straight down to the crotch."], "TCL": ["Total Crotch Length", "The FCL plus comfort plus the waistband seam allowance, straight down the folded edge from the raw top edge."], "PML": ["Pants Measured Length", "Top of the waistband to the bottom of the ankle, lying flat."], "WSA": ["Waistband Seam Allowance", "The sewn seam plus the fold above the finished waistband."], "TPM": ["Top Pocket Mark", "The mark 1\" below the waistband mark, where the pocket opening starts."], "BPM": ["Bottom Pocket Mark", "Where the pocket opening ends, 7½\" below the TPM."], "BTA": ["BPM to Ankle", "The pattern material from the BPM to the bottom of the pattern."], "TCM": ["Top Crotch Mark", "Where the crotch rise begins: straight down from the IWPW mark."], "BCM": ["Bottom Crotch Mark", "Where the crotch rise ends: down the folded edge the TCL, then across the TCW. The same level on the front and the rear."], "CR": ["Crotch Rise", "The curved line drawn from the TCM to the BCM. The front and the rear pieces each have their own crotch rise."], "CRF": ["Crotch Rise Front", "The crotch rise of the front pieces, measured along the curve. The narrower curve."], "CRR": ["Crotch Rise Rear", "The crotch rise of the rear pieces, measured along the curve. The wider, longer curve. It ends at the same BCM level as the front."], "LF": ["Left Front", "The left half of the front of the pants."], "RF": ["Right Front", "The right half of the front of the pants."], "LR": ["Left Rear", "The left half of the rear of the pants."], "RR": ["Right Rear", "The right half of the rear of the pants."], "WF": ["Waistband Fold", "The part of the waistband that folds down behind the front."], "PO": ["Pocket Opening", "Where the hand goes in, from the TPM to the BPM."], "COM": ["Comfort", "Extra room to move that is added to a measurement."]};
+  var re=new RegExp('\\b('+Object.keys(AB).join('|')+')\\b','g');
+  var bar=document.getElementById('abar');
+  function skip(n){ var c=n.classList; return (c&&(c.contains('gl')||c.contains('gbtn')||c.contains('abbr')))||n.id==='abar'||n.id==='zoomov'||n.tagName==='SCRIPT'||n.tagName==='BUTTON'||n.tagName==='LABEL'; }
+  function wrap(node){
+    if(node.nodeType===3){
+      var t=node.nodeValue; re.lastIndex=0; if(!re.test(t)) return; re.lastIndex=0;
+      var frag=document.createDocumentFragment(), last=0, m;
+      while((m=re.exec(t))){ if(m.index>last) frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+        var sp=document.createElement('span'); sp.className='abbr'; sp.textContent=m[1]; sp.setAttribute('data-a',m[1]); frag.appendChild(sp); last=m.index+m[1].length; }
+      if(last<t.length) frag.appendChild(document.createTextNode(t.slice(last)));
+      node.parentNode.replaceChild(frag,node); return;
+    }
+    if(node.nodeType!==1||skip(node)) return;
+    Array.prototype.slice.call(node.childNodes).forEach(wrap);
+  }
+  document.querySelectorAll('.panel').forEach(wrap);
+  function mine(k){
+    var v=VAL[k]; if(!v) return '';
+    for(var i=0;i<v[2].length;i++){ if(rd(v[2][i])==null) return ''; }
+    var e=env(); return 'Your '+k+': '+fmt(e[v[0]])+'"'+v[1];
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.abbr');
+    if(a){ e.stopPropagation(); var k=a.getAttribute('data-a'), d=AB[k];
+      bar.querySelector('.a1').textContent='('+k+')'; bar.querySelector('.a2').textContent=d[0]; bar.querySelector('.a3').textContent=d[1];
+      bar.querySelector('.a4').textContent=mine(k); bar.classList.add('on'); return; }
+    if(!e.target.closest('#abar')||e.target.classList.contains('abx')) bar.classList.remove('on');
+  },true);
+
+  /* ---- glossary: go to the definition ---- */
+  var gspan=gb.querySelector('span');
+  function flash(t){ t.classList.add('flash'); setTimeout(function(){ t.classList.remove('flash'); },2200); }
+  gl.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var t=document.getElementById(a.getAttribute('href').slice(1));
+      gl.classList.remove('on'); gspan.textContent='+';
+      bar.classList.remove('on');
+      if(t){ setTimeout(function(){ t.scrollIntoView({behavior:'smooth',block:'center'}); flash(t.closest('.tr')||t); },60); }
+    });
+  });
+  var cks=document.querySelectorAll('.ck');
+  cks.forEach(function(c,i){
+    try{ if(localStorage.getItem('cp5_ck_'+i)==='1') c.checked=true; }catch(e){}
+    c.addEventListener('change', function(){ try{ localStorage.setItem('cp5_ck_'+i, c.checked?'1':'0'); }catch(e){} });
+  });
+})();
+</script>
+</body>
+</html>
